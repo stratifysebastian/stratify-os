@@ -1,0 +1,73 @@
+/* achromatic-ledger (seed 131705604). Chrome is ink; the one hue sits on the expiry meter only.
+   Ground is a blue-grey (#f2f4f7) for the ledger feel. Grid: one column, 16px gutters, max 640px. */
+:root {
+  --ground: #f2f4f7; --surface: #ffffff; --raised: #eeeeee; --border: #e6e6e6; --rule: #f0f0f0; --control: #d4d4d4;
+  --text: #0a0a0a; --muted: #6b6b6b; --accent: #141414; --positive: #2e7d32; --negative: #c4242a; --hue: #1d5fbf;
+  --pill-neutral-bg: #eeeeee; --pill-neutral-ink: #3d3d3d;
+  --radius-card: 8px; --radius-control: 6px; --gap: 12px; --pad: 16px;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--ground); color: var(--text); font: 400 14px/1.5 var(--font-geist-sans), Geist, Inter, system-ui, sans-serif; }
+.num { font-variant-numeric: tabular-nums; }
+.grey { color: var(--muted); }
+
+.bar { height: 48px; display: flex; align-items: center; justify-content: space-between; padding: 0 var(--pad); border-bottom: 1px solid var(--border); background: var(--ground); position: sticky; top: 0; z-index: 2; }
+.brand { display: inline-flex; align-items: center; gap: 8px; font-weight: 500; }
+.scope { color: var(--muted); font-size: 13px; }
+
+.wrap { max-width: 640px; margin: 0 auto; padding: 16px var(--pad) 48px; }
+.banner { margin: 0 0 var(--gap); padding: 8px 12px; background: #fffbeb; border: 1px solid #fde68a; border-radius: var(--radius-control); color: #92400e; font-size: 12px; }
+h1 { margin: 8px 0 4px; font-size: 22px; line-height: 1.25; font-weight: 500; letter-spacing: -0.01em; }
+.finding { margin: 0 0 16px; color: var(--text); font-size: 14px; }
+
+.tabs { display: flex; gap: 20px; border-bottom: 1px solid var(--border); margin-bottom: var(--gap); overflow-x: auto; }
+.tabs a { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; color: var(--muted); text-decoration: none; border-bottom: 2px solid transparent; margin-bottom: -1px; white-space: nowrap; }
+.tabs a.on { color: var(--text); border-bottom-color: var(--accent); font-weight: 500; }
+
+.list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--gap); }
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-card); padding: var(--pad); }
+.meta { display: flex; justify-content: space-between; color: var(--muted); font-size: 12px; margin-bottom: 4px; }
+.card h2 { margin: 0 0 6px; font-size: 15px; line-height: 1.35; font-weight: 500; }
+.sum { margin: 0 0 8px; color: var(--muted); font-size: 13px; }
+.blocks, .note-line { margin: 0 0 12px; font-size: 13px; }
+.k { color: var(--muted); font-size: 12px; margin-right: 6px; }
+
+.expiry { margin: 0 0 14px; }
+.expiry-row { display: flex; align-items: baseline; gap: 6px; font-size: 13px; margin-bottom: 6px; }
+.expiry-row .num { font-weight: 500; font-size: 14px; }
+.meter { height: 3px; background: var(--raised); border-radius: 2px; overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--hue); }
+
+.decide { display: grid; gap: 10px; }
+.field { width: 100%; min-height: 44px; padding: 0 12px; font: inherit; color: var(--text); background: var(--surface); border: 1px solid var(--control); border-radius: var(--radius-control); }
+.field::placeholder { color: var(--muted); }
+.actions { display: flex; gap: 8px; }
+.btn { flex: 1; min-height: 44px; padding: 0 14px; font: inherit; font-weight: 500; color: var(--text); background: #e5e5e5; border: 1px solid transparent; border-radius: var(--radius-control); cursor: pointer; }
+.btn.primary { background: var(--accent); color: #fff; }
+.btn:hover { filter: brightness(0.95); }
+.btn.primary:hover { filter: none; background: #2b2b2b; }
+.btn:active { transform: translateY(1px); }
+:is(.btn, .field, .tabs a):focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.decided { margin: 0; font-size: 13px; }
+.decided b.approved { color: var(--positive); }
+.decided b.rejected { color: var(--negative); }
+.decided b.expired { color: var(--muted); }
+.decided b { font-weight: 500; }
+
+.empty { padding: 20px 16px; text-align: center; color: var(--muted); border: 1px dashed var(--control); border-radius: var(--radius-card); }
+
+@media (min-width: 641px) {
+  .wrap { padding-top: 32px; }
+  .actions { max-width: 360px; }
+  .btn { flex: 0 1 auto; min-width: 104px; }
+}
+@media (prefers-reduced-motion: reduce) { .btn:active { transform: none; } }
+
+.scope { display: inline-flex; align-items: center; gap: 12px; }
+.signout { margin: 0; }
+.signout button { min-height: 44px; padding: 0 4px; font: inherit; font-size: 13px; color: var(--muted); background: none; border: 0; cursor: pointer; }
+.signout button:hover { color: var(--text); }
+.empty a { color: var(--text); font-weight: 500; text-underline-offset: 3px; }
+a { color: inherit; }
